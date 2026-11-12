@@ -12,6 +12,25 @@ body {
 header {
     display: flex;
     gap: 1em;
-    align-items: horizontal;
+    align-items: baseline;
+    align-self: stretch;
+}
+
+header label {
     margin-left: auto;
+}
+
+header input[type="range"] {
+    position: right;
+    width: 20em;
+}
+
+header time,
+header em {
+    display: block;
+}
+
+header em {
+    color: gray;
+    font-style: italic;
 }

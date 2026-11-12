@@ -1,7 +1,7 @@
 html,
 body {
     margin: 0;
-    padding: 5;
+    padding: 5px;
     height: 100%;
     width: 100%;
     display: flex;
@@ -12,7 +12,7 @@ body {
 #map {
     width: 100%;
     height: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
@@ -22,4 +22,47 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
+}
+
+/* Shared colors: departures = steelblue, arrivals = darkorange */
+#map svg circle,
+.legend > div {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+}
+
+#map svg circle {
+    fill: var(--color);
+    fill-opacity: 0.6;
+    stroke: white;
+    stroke-width: 1;
+}
+
+/* Legend: one full-width bar under the map, split into three equal color blocks */
+.legend {
+    display: flex;
+    gap: 1px;
+    margin-block: 1em;
+    width: 100%;
+}
+
+.legend > div {
+    flex: 1;
+    padding: 0.4em 1em;
+    background: var(--color);
+    color: white;
+    font-weight: bold;
+}
+
+.legend > div:nth-child(2) {
+    text-align: center;
+}
+
+.legend > div:last-child {
+    text-align: right;
 }
